@@ -64,10 +64,10 @@ class _AuthPageState extends State<AuthPage> {
         timeout: const Duration(seconds: 20));
     Future<api.MastodonResponse<api.RegisteredApplication>> clientFuture =
         mastodon.v1.apps.createApplication(
-            clientName: "Jig",
+            clientName: "NiceCrow",
             redirectUri: 'http://localhost:31130',
             scopes: [api.Scope.read, api.Scope.write, api.Scope.push],
-            websiteUrl: "https://github.com/Elleo/jig");
+            websiteUrl: "https://github.com/Elleo/nicecrow");
 
     clientFuture.then((client) async {
       print(client);
@@ -95,7 +95,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Jig - Log In"),
+          title: const Text("NiceCrow - Log In"),
         ),
         body: awaitingKey
             ? Column(

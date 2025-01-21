@@ -1,4 +1,4 @@
-package com.example.jig
+package com.mikeasoft.nicecrow
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:adwaita/adwaita.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:jig/auth.dart';
+import 'package:nicecrow/auth.dart';
 
 void main() {
-  runApp(const JigApp());
+  runApp(const NiceCrowApp());
 }
 
-class JigApp extends StatelessWidget {
-  const JigApp({super.key});
+class NiceCrowApp extends StatelessWidget {
+  const NiceCrowApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Jig', theme: AdwaitaThemeData.dark(), home: const AuthPage());
+        title: 'NiceCrow', theme: AdwaitaThemeData.dark(), home: const AuthPage());
   }
 }
 
@@ -43,6 +43,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Jig")), body: Center());
+    return Scaffold(appBar: AppBar(title: Text("NiceCrow")), body: Center());
   }
 }
