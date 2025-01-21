@@ -16,6 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mastodon_api/mastodon_api.dart' as api;
@@ -63,7 +65,7 @@ class _AuthPageState extends State<AuthPage> {
     Future<api.MastodonResponse<api.RegisteredApplication>> clientFuture =
         mastodon.v1.apps.createApplication(
             clientName: "Jig",
-            redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
+            redirectUri: 'http://localhost:31130',
             scopes: [api.Scope.read, api.Scope.write, api.Scope.push],
             websiteUrl: "https://github.com/Elleo/jig");
 
@@ -73,8 +75,8 @@ class _AuthPageState extends State<AuthPage> {
         instance: instance,
         clientId: client.data.clientId,
         clientSecret: client.data.clientSecret,
-        redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        customUriScheme: 'http://localhost:5555/auth.html',
+        redirectUri: 'http://localhost:31130',
+        customUriScheme: 'http://localhost:31130',
       );
 
       try {
