@@ -36,7 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   url_launcher: ^6.3.1
   mastodon_api: 
-    path: /home/mike/src/mastodon-api
+    git:
+      url: https://github.com/Elleo/mastodon-api.git
+      ref: vapid_key_optional
   mastodon_oauth2: ^1.0.0
   adwaita: ^1.1.0
   shared_preferences: ^2.3.5
