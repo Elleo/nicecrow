@@ -44,6 +44,8 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+    <true/>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Used to record voice messages</string>
 </dict>
 </plist>

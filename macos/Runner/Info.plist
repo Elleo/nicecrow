@@ -27,6 +27,8 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+    <string>NSApplication</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Used to record voice messages</string>
 </dict>
 </plist>

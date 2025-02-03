@@ -1,7 +1,7 @@
 /*
- * This file is part of Baby Elephant, a Mastodon client for smartwatches.
+ * This file is part of Nice Crow
  *
- * Copyright (c) 2022-2023 Mike Sheldon <mike@mikeasoft.com>
+ * Copyright (c) 2025 Mike Sheldon <mike@mikeasoft.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,13 +16,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mastodon_api/mastodon_api.dart' as api;
 import 'package:mastodon_oauth2/mastodon_oauth2.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'instances.dart';
 
@@ -83,10 +81,10 @@ class _AuthPageState extends State<AuthPage> {
         final response = await oauth2
             .executeAuthCodeFlow(scopes: [Scope.read, Scope.write, Scope.push]);
 
-        super.setState(() {
-          accessToken = response.accessToken;
-          Navigator.pop(context);
-        });
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString("accessToken", response.accessToken);
+        prefs.setString("instance", instance);
+        Navigator.pop(context);
       } on PlatformException catch (_) {}
     });
   }
@@ -95,7 +93,8 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("NiceCrow - Log In"),
+          title: const Text("Log In"),
+          automaticallyImplyLeading: false,
         ),
         body: awaitingKey
             ? Column(
@@ -115,7 +114,7 @@ class _AuthPageState extends State<AuthPage> {
                     const Padding(
                       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                       child: Text(
-                          "Enter the address of your mastodon instance (server) to log in"),
+                          "Enter the address of your Nice Crow instance to log in"),
                     ),
                     Padding(
                         padding: const EdgeInsets.all(20),
@@ -180,7 +179,7 @@ class _AuthPageState extends State<AuthPage> {
                                     ? Theme.of(context).unselectedWidgetColor
                                     : Colors.white))),
                     const SizedBox(height: 40),
-                    const Text("Don't have a mastodon account?"),
+                    /*const Text("Don't have a Nice Crow account?"),
                     const SizedBox(height: 10),
                     ElevatedButton(
                         onPressed: () {
@@ -188,7 +187,7 @@ class _AuthPageState extends State<AuthPage> {
                               Uri.parse("https://joinmastodon.org/servers"));
                         },
                         child:
-                            Text("Join", style: TextStyle(color: Colors.white)))
+                            Text("Register", style: TextStyle(color: Colors.white)))*/
                   ]));
   }
 }

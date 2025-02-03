@@ -3,11 +3,16 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  audioplayers_windows
+  permission_handler_windows
   url_launcher_windows
   window_to_front
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
+  flutter_recorder
+  ogg_opus_player
+  system_clock
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
