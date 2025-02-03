@@ -387,9 +387,11 @@ packages:
   mastodon_api:
     dependency: "direct main"
     description:
-      path: "/home/mike/src/mastodon-api"
-      relative: false
-    source: path
+      path: "."
+      ref: vapid_key_optional
+      resolved-ref: d1c04689e0fad3dbff3f93b84527e6a0cfa39794
+      url: "https://github.com/Elleo/mastodon-api.git"
+    source: git
     version: "0.6.1"
   mastodon_oauth2:
     dependency: "direct main"
