@@ -17,10 +17,9 @@
  */
 
 import 'dart:io';
-import 'dart:ffi' as ffi;
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:adwaita/adwaita.dart';
-import 'package:flutter_recorder/flutter_recorder.dart';
 import 'package:mastodon_api/mastodon_api.dart';
 import 'package:nicecrow/pages/feed_page.dart';
 import 'package:nicecrow/pages/messages_page.dart';
@@ -29,13 +28,11 @@ import 'package:nicecrow/pages/notifications.dart';
 import 'package:nicecrow/pages/settings_page.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:opus_dart/opus_dart.dart';
-import 'package:opus_flutter/opus_flutter.dart' as opus_flutter;
 import 'package:nicecrow/auth.dart';
-import 'package:nicecrow/opus/proxy_ffi.dart';
 
 late StreamingSharedPreferences prefs;
 MastodonApi? mastodon;
+late AudioHandler audioHandler;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,15 +44,6 @@ void main() async {
       }
     });
   }
-  Recorder.instance.init(sampleRate: 48000, channels: RecorderChannels.stereo);
-
-  try {
-    initOpus(await opus_flutter.load());
-  } on UnsupportedError {
-    await initFfi();
-    initOpus(openOpus());
-  }
-  print(getOpusVersion());
   runApp(const NiceCrowApp());
 }
 

@@ -16,11 +16,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:mastodon_api/mastodon_api.dart' as api;
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:siri_wave/siri_wave.dart';
 
 class Timeline extends StatefulWidget {
   final api.MastodonApi mastodon;
@@ -39,7 +40,7 @@ class _TimelineState extends State<Timeline> {
   List<String> revealedStatuses = [];
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
-
+  final player = AudioPlayer();
   _TimelineState() : super();
 
   @override
@@ -110,6 +111,7 @@ class _TimelineState extends State<Timeline> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.statuses);
     return Scaffold(
         body: SmartRefresher(
       enablePullDown: true,
@@ -244,8 +246,7 @@ class _TimelineState extends State<Timeline> {
                                 !revealedStatuses
                                     .contains(widget.statuses[i].id),
                             child: Column(children: [
-                              for (var media in widget.statuses[i].reblog !=
-                                      null
+                              for (var media in widget.statuses[i].reblog != null
                                   ? widget.statuses[i].reblog!.mediaAttachments
                                   : widget.statuses[i].mediaAttachments)
                                 Padding(
@@ -253,13 +254,21 @@ class _TimelineState extends State<Timeline> {
                                         const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                     child: ClipRRect(
                                         borderRadius: BorderRadius.circular(5),
-                                        child: Image(
-                                            image: NetworkImage(
-                                                media.previewUrl ?? ''),
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width -
-                                                20)))
+                                        child: media.type ==
+                                                api.MediaAttachmentType.audio
+                                            ? SiriWaveform.ios9(
+                                                controller:
+                                                    IOS9SiriWaveformController(
+                                                        amplitude: 0),
+                                                options: IOS9SiriWaveformOptions(
+                                                    height: 40,
+                                                    width: MediaQuery.of(context)
+                                                            .size
+                                                            .width -
+                                                        20))
+                                            : Image(
+                                                image: NetworkImage(media.previewUrl ?? ''),
+                                                width: MediaQuery.of(context).size.width - 20)))
                             ]))
                       ]))),
               itemCount: widget.statuses.length,
