@@ -1,6 +1,8 @@
 # Nice Crow
 
-![Screenshot of Nice Crow displaying a user's feed with some audio notes and music visible](screenshot.png)
+<p align="center">
+<img alt="Screenshot of Nice Crow displaying a user's feed with some audio notes and music visible" src="https://github.com/Elleo/nicecrow/blob/main/screenshot.png?raw=true" width=256 height=auto)
+</p>
 
 Nice Crow is an audio focused Fediverse project. It has two main streams of focus, voice notes and music. The idea is that you should be able to listen to your social network like a series of micro-podcasts, and enjoy the music created by Fediverse citizens.
 
