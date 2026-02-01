@@ -52,6 +52,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   flutter_widget_from_html_core: ^0.15.2
   siri_wave: ^2.2.0
+  just_audio: ^0.9.46
 
 dev_dependencies:
   flutter_test:

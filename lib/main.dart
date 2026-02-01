@@ -21,6 +21,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:adwaita/adwaita.dart';
 import 'package:mastodon_api/mastodon_api.dart';
+import 'package:nicecrow/audio_handler.dart';
 import 'package:nicecrow/pages/feed_page.dart';
 import 'package:nicecrow/pages/messages_page.dart';
 import 'package:nicecrow/pages/music_page.dart';
@@ -44,6 +45,14 @@ void main() async {
       }
     });
   }
+  audioHandler = await AudioService.init(
+    builder: () => AudioPlayerHandler(),
+    config: const AudioServiceConfig(
+      androidNotificationChannelId: 'com.ryanheise.myapp.channel.audio',
+      androidNotificationChannelName: 'Audio playback',
+      androidNotificationOngoing: true,
+    ),
+  );
   runApp(const NiceCrowApp());
 }
 
